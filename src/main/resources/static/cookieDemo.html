@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Spring Boot WebSocket Chat Application</title>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<noscript>
+    <h2>CookieDoMainDemo</h2>
+</noscript>
+
+<div id="username-page">
+    <div class="username-page-container">
+        <h1 class="title">Type your Cookie</h1>
+        <form id="usernameForm" name="usernameForm">
+            <div class="form-group">
+                <input type="text" id="cookie" placeholder="Cookie" autocomplete="off" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="send()" class="accent username-submit">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/jquery-3.4.1.js"></script>
+</body>
+</html>
+
+<script>
+    function send(){
+        $.ajax({
+            url: "/CookieDomain/setCookie",
+            type: "Post",
+            data: {data: $("#cookie").val()},
+            datatype: "Json",
+            success: function(result){
+                console.log("success");
+            },
+            error: function(e) {
+                console.log("error")
+            }
+        });
+    }
+</script>
